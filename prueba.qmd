@@ -1,0 +1,38 @@
+---
+title: "prueba"
+author: "Chantal"
+format: revealjs
+editor: visual
+excute: 
+  echo: True
+---
+
+## carga de datos
+```{r}
+library(tidyverse)
+datos <- read.csv(file= "~/SOTWARE II/ENTREGA 3/accidentes.csv")
+```
+
+---
+
+
+## resumen de los datos
+```{r}
+resumen <-
+  datos |> 
+  count(sexo)
+```
+
+---
+## visualización
+```{r}
+#| code-fold: true
+gg <- ggplot(resumen) +
+  geom_col(aes(x= sexo, y = n, fill = sexo), alpha = 0.56) +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+plotly::ggplotly(gg)
+```
+
+
+
